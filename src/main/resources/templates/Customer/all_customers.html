@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <table class="tableMenu">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th>Mail</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer: ${customer_list}" title="Click to View">
+            <td th:text="${customer.id}"/>
+            <td th:text="${customer.customer_name}"/>
+            <td th:text="${customer.customer_phone_number}"/>
+            <td th:text="${customer.customer_mail}"/>
+            <td>
+                <a th:href="@{'/viewCustomer/'+${customer.id}}">
+                    <button class="normalButton">
+                        Information
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/updateCustomer/'+${customer.id}}">
+                    <button class="normalButton">
+                        Update
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/deleteCustomer/'+${customer.id}}">
+                    <button class="deleteButton">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
