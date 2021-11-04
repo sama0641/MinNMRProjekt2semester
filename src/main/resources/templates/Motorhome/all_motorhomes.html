@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="tableMenu">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Available</th>
+        <th>Price per day</th>
+        <th>Season</th>
+        <th>Size</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="motorhome: ${motorhome_list}" title="Click to View">
+        <td th:text="${motorhome.id}"/>
+        <td th:text="${motorhome.is_Available}? 'ja':'nej'"/>
+        <td th:text="${motorhome.pricePerDay}"/>
+        <td th:text="${motorhome.season}"/>
+        <td th:text="${motorhome.size_category}"/>
+        <td th:text="${motorhome.brand_name}"/>
+        <td th:text="${motorhome.model_name}"/>
+        <td>
+            <a th:href="@{'/viewMotorhome/'+${motorhome.id}}">
+                <button>
+                    Information
+                </button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/updateMotorhome/'+${motorhome.id}}">
+                <button>
+                    Update
+                </button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/deleteMotorhome/'+${motorhome.id}}">
+                <button>
+                    Delete
+                </button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

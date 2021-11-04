@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Title</title>
+</head>
+<body>
+
+<div>
+  <table class="tableMenu">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Job Title</th>
+      <th>Employee Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employee_list}" title="Click to View">
+      <td th:text="${employee.id}"/>
+      <td th:text="${employee.jobtitle}"/>
+      <td th:text="${employee.employee_name}"/>
+      <td>
+        <a th:href="@{'/viewEmployee/'+${employee.id}}">
+          <button class="normalButton">
+            Information
+          </button>
+        </a>
+      </td>
+      <td>
+        <a th:href="@{'/updateEmployee/'+${employee.id}}">
+          <button class="normalButton">
+            Update
+          </button>
+        </a>
+      </td>
+      <td>
+        <a th:href="@{'/deleteEmployee/'+${employee.id}}">
+          <button class="deleteButton">
+            Delete
+          </button>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

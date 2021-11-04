@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All bookings</title>
+</head>
+<body>
+<div>
+    <table class="tableMenu">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Booked at</th>
+            <th>Returned at</th>
+            <th>Total km driven</th>
+            <th>Tank is half full</th>
+            <th>Motorhome is clean</th>
+            <th>Employee ID</th>
+            <th>Customer ID</th>
+            <th>Motorhome ID</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking: ${booking_list}" title="Click to View">
+            <td th:text="${booking.id}"/>
+            <td th:text="${booking.bookedAt}"/>
+            <td th:text="${booking.returnedAt}"/>
+            <td th:text="${booking.kmDriven}"/>
+            <td th:text="${booking.isHalfFull}? 'ja':'nej'"/>
+            <td th:text="${booking.isClean}? 'ja':'nej'"/>
+            <td th:text="${booking.employeeId}"/>
+            <td th:text="${booking.customerId}"/>
+            <td th:text="${booking.motorhomeId}"/>
+
+            <td>
+                <a th:href="@{'/viewBookings/'+${booking.id}}">
+                    <button class="normalButton">
+                        Information
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/updateBooking/'+${booking.id}}">
+                    <button class="normalButton">
+                        Update
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/deleteBooking/'+${booking.id}}">
+                    <button class="deleteButton">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
