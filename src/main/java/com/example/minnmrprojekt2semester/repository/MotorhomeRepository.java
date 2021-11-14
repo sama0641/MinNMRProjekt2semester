@@ -46,9 +46,12 @@ public class MotorhomeRepository {
                 motorhome.getSize_category(),motorhome.getBrand_name(),motorhome.getModel_name(), id);
     }
 
+    public void deleteMotorhome (int id) { //id'et sepcificerer hvilken MH
+        String sqlStatement = "DELETE FROM motorhomes WHERE id =?"; //Delete VED PÅ FORHÅND at det hele rækken der skal slettes
+        jdbcTemplate.update(sqlStatement, id);
 
 
-
+    }
 
 
 }

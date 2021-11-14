@@ -1,5 +1,6 @@
 package com.example.minnmrprojekt2semester.repository;
 import com.example.minnmrprojekt2semester.model.Booking;
+import com.example.minnmrprojekt2semester.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,6 +38,14 @@ public class BookingRepository {
             return jdbcTemplate.queryForObject(sqlStatement,rowMapper, id);
 
         }
+
+    public void updateBooking (Booking booking, int id) {
+        String sqlStatement= "UPDATE booking SET " +
+                "booked_at=?, returned_at =?, km_driven=?, is_half_full=?, is_clean=?, employee_id=?, customer_id=?, " +
+                "motorhome_id=?, WHERE id=?";
+        jdbcTemplate.update(sqlStatement,booking.getBookedAt(),booking.getReturnedAt(),booking.getKmDriven(),booking.isHalfFull(),
+                booking.isClean(),booking.getEmployeeId(),booking.getCustomerId(),booking.getMotorhomeId(), id);
+    }
 
         public void deleteBooking (int id) {
             String sqlStatement= "DELETE FROM booking WHERE id =?"; //Delete VED PÅ FORHÅND at det hele rækken der skal slettes
