@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Customer</title>
 </head>
 <body>
+
+<div class="form-container">
+    <form action="/createCustomer" method="post">
+
+        <label for="customer_name">Name</label>
+        <input type="text"  name="customer_name" id="customer_name">
+        <label for="customer_phone_number">Phone</label>
+        <input type="text"  name="customer_phone_number" id="customer_phone_number">
+        <label for="customer_mail">Mail</label>
+        <input type="text"  name="customer_mail" id="customer_mail">
+
+        <label for="customer_id"></label>
+        <input type="number" name="customer_id" value="${customer_id}" id="customer_id" hidden>
+
+        <button type="submit">Create</button>
+    </form>
+</div>
 
 </body>
 </html>
