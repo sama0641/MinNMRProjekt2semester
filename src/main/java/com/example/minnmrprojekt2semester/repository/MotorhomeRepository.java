@@ -1,12 +1,10 @@
 package com.example.minnmrprojekt2semester.repository;
-import com.example.minnmrprojekt2semester.model.Customer;
 import com.example.minnmrprojekt2semester.model.Motorhome;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository

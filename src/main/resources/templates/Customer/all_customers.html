@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-
     <title>All Customers</title>
 </head>
 <body>
@@ -36,14 +35,14 @@
                 </a>
             </td>
             <td>
-                <a th:href="@{'/updateCustomer/'+${customer.id}}">
+                <a th:href="@{'/update_customer/'+${customer.id}}">
                     <button class="normalButton">
                         Update
                     </button>
                 </a>
             </td>
             <td>
-                <a th:href="@{'/deleteCustomer/'+${customer.id}}">
+                <a th:href="@{'/delete_customer/'+${customer.id}}">
                     <button class="deleteButton">
                         Delete
                     </button>
@@ -52,6 +51,11 @@
         </tr>
         </tbody>
     </table>
+    <a th:href="@{'/create_customer/'}">
+        <button class="normalButton">
+            Create Customer
+        </button>
+    </a>
 </div>
 
 
