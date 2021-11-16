@@ -2,27 +2,29 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Update motorhome</title>
+    <title>Update Motorhome</title>
 </head>
 <body>
 <form action="/direct_update_motorhome" method="post">
 
-    <label for="is_available">Is it available?</label>
-    <input type="text" name="is_available" id="is_available">
+    <label for="motorhome_name">Name</label>
+    <input type="text" name="motorhome_name" id="motorhome_name" th:value="${motorhome.motorhome_name}">
+    <label for="is_available">Is available</label>
+    <input type="text" name="is_available" id="is_available" th:value="${motorhome.is_available}">
     <label for="price_per_day">Price per day</label>
-    <input type="text" name="price_per_day" id="price_per_day">
+    <input type="text" name="price_per_day" id="price_per_day" th:value="${motorhome.price_per_day}">
     <label for="season">Season</label>
-    <input type="season" name="season" id="season">
-    <label for="size_category">Size categoryt</label>
-    <input type="text" name="size_category" id="size_category">
-    <label for="brand_name">Brand name</label>
-    <input type="brand_name" name="brand_name" id="brand_name">
-    <label for="model_name">Model name</label>
-    <input type="model_name" name="model_name" id="model_name">
+    <input type="text" name="season" id="season" th:value="${motorhome.season}">
+    <label for="size_category">Size</label>
+    <input type="text" name="size_category" id="size_category" th:value="${motorhome.size_category}">
+    <label for="brand_name">Brand</label>
+    <input type="text" name="brand_name" id="brand_name" th:value="${motorhome.brand_name}">
+    <label for="model_name">Model</label>
+    <input type="text" name="model_name" id="model_name" th:value="${motorhome.model_name}">
 
-    <label for="motorhome_id"></label>
-    <input type="number" name="motorhome_id" value="${motorhome_id}" id="motorhome_id" hidden>
 
+    <label for="id"></label>
+    <input type="number" name="id" th:value="${motorhome.id}" id="id" hidden>
 
     <button type="submit">Update</button>
 </form>
@@ -30,3 +32,6 @@
 
 </body>
 </html>
+
+
+

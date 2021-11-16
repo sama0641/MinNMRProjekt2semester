@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create employee</title>
 </head>
 <body>
 
+<div class="form-container">
+    <form action="/create_employee" method="post">
+
+        <label for="jobtitle">Name</label>
+        <input type="text" name="jobtitle" id="jobtitle">
+        <label for="employee_name">Phone</label>
+        <input type="text" name="employee_name" id="employee_name">
+
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+
 </body>
 </html>
+

@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create motorhome</title>
+    <title>Create Motorhome</title>
 </head>
 <body>
 
+<div class="form-container">
+    <form action="/create_motorhome" method="post">
+
+        <label for="is_available">Is available</label>
+        <input type="text" name="is_available" id="is_available">
+        <label for="price_per_day">Price per day</label>
+        <input type="text" name="price_per_day" id="price_per_day">
+        <label for="season">Season</label>
+        <input type="text" name="season" id="season">
+        <label for="size_category">Size</label>
+        <input type="text" name="size_category" id="size_category">
+        <label for="brand_name">Brand</label>
+        <input type="text" name="brand_name" id="brand_name">
+        <label for="model_name">Model</label>
+        <input type="text" name="model_name" id="model_name">
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+
 </body>
 </html>
+
+
