@@ -1,6 +1,5 @@
 package com.example.minnmrprojekt2semester.repository;
 import com.example.minnmrprojekt2semester.model.Booking;
-import com.example.minnmrprojekt2semester.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,8 +27,8 @@ public class BookingRepository {
             String sqlStatement="INSERT into booking(booked_at, returned_at, km_driven, is_half_full, is_clean, employee_id," +
                     "customer_id, motorhome_id)" +
                     "VALUES(?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sqlStatement, booking.getBookedAt(),booking.getReturnedAt(),booking.getKmDriven(),
-                    booking.isHalfFull(), booking.isClean(), booking.getEmployeeId(), booking.getCustomerId(), booking.getMotorhomeId());
+            jdbcTemplate.update(sqlStatement, booking.getBooked_at(),booking.getReturned_at(),booking.getKm_driven(),
+                    booking.isIs_half_full(), booking.isIs_clean(), booking.getEmployee_id(), booking.getCustomer_id(), booking.getMotorhome_id());
         }
 
         public Booking readOneBooking (int id) {
@@ -43,8 +42,8 @@ public class BookingRepository {
         String sqlStatement= "UPDATE booking SET " +
                 "booked_at=?, returned_at =?, km_driven=?, is_half_full=?, is_clean=?, employee_id=?, customer_id=?, " +
                 "motorhome_id=?, WHERE id=?";
-        jdbcTemplate.update(sqlStatement,booking.getBookedAt(),booking.getReturnedAt(),booking.getKmDriven(),booking.isHalfFull(),
-                booking.isClean(),booking.getEmployeeId(),booking.getCustomerId(),booking.getMotorhomeId(), id);
+        jdbcTemplate.update(sqlStatement,booking.getBooked_at(),booking.getReturned_at(),booking.getKm_driven(),booking.isIs_half_full(),
+                booking.isIs_clean(),booking.getEmployee_id(),booking.getCustomer_id(),booking.getMotorhome_id(), id);
     }
 
         public void deleteBooking (int id) {

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><head>
     <meta charset="UTF-8">
     <title>Update employee</title>
 </head>
@@ -8,11 +7,11 @@
 <form action="/direct_update_employee" method="post">
 
     <label for="employee_name">Name</label>
-    <input type="text" name="employee_name" id="employee_name">
+    <input type="text" name="employee_name" id="employee_name" th:value="${employee.employee_name}">
     <label for="jobtitle">Job Title</label>
-    <input type="text" name="jobtitle" id="jobtitle">
+    <input type="text" name="jobtitle" id="jobtitle" th:value="${employee.jobtitle}">
     <label for="employee_id"></label>
-    <input type="number" name="employee_id" value="${employee_id}" id="employee_id" hidden>
+    <input type="number" name="employee_id" th:value="${employee_id}" id="employee_id" hidden>
 
     <button type="submit">Update</button>
 </form>

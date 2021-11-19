@@ -1,6 +1,5 @@
 package com.example.minnmrprojekt2semester.model;
 import com.example.minnmrprojekt2semester.repository.BookingRepository;
-import com.example.minnmrprojekt2semester.services.CancellationCalculator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +28,7 @@ class MotorhomeTest {
 
 
         //Doesn't work!!
-        assertEquals(450,bookingRepository.readOneBooking(1).getKmDriven());
+        assertEquals(450,bookingRepository.readOneBooking(1).getKm_driven());
 
 
 

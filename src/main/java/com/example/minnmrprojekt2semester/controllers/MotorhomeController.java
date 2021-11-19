@@ -235,11 +235,11 @@ public class MotorhomeController {
         return "Employee/employee_by_id";
     }
 
-    @GetMapping("/update_employee")
-    public String updateEmployee (Model model) {
-
-        model.addAttribute("employee_id", temporaryId);
+    @GetMapping("/update_employee/{employee_id}")
+    public String updateEmployee (Model model, @PathVariable("employee_id") int employeeID) {
+        model.addAttribute("employee", employeeRepository.readOneEmployee(employeeID));
         return "Employee/update_employee";
+
     }
 
     @PostMapping("/direct_update_employee")
