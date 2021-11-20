@@ -1,5 +1,6 @@
 package com.example.minnmrprojekt2semester.services;
 import com.example.minnmrprojekt2semester.model.Booking;
+import com.example.minnmrprojekt2semester.model.Motorhome;
 import com.example.minnmrprojekt2semester.repository.BookingRepository;
 import com.example.minnmrprojekt2semester.repository.MotorhomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +13,25 @@ public class CancellationCalculator {
     private MotorhomeRepository motorhomeRepository;
 
 
-  public void cancellationCharge (int bookingId) {
+  public void cancelBooking (int bookingId) {
         //Find booking
-        Booking tempCustomerBooking = bookingRepository.readOneBooking(bookingId);//bookingobjekt=customerBooking > den ved hvilken ID det er grundet metoden
-        PriceCalculator.calculateCancellationPrice(tempCustomerBooking);
-
-        //vis den nye pris
+        Booking tempCustomerBooking = bookingRepository.read(bookingId);//bookingobjekt=customerBooking > den ved hvilken ID det er grundet metoden
+      //kalde metoden og vise den nye pris
+        PriceCalculator priceCalculator = new PriceCalculator(); //opretter en isntans af Priceklassen
+        priceCalculator.calculateCancellationPrice(tempCustomerBooking); //kalder metoden på instansen i stedet for klassen
+                                                                         //for at undgå static (den samme sted i hukkommelse)
 
        //Change motorhome status to available
-       int motorhome = tempCustomerBooking.getMotorhome_id();
-       motorhomeRepository.readOneMotorhome(motorhome).setIs_Available(true);
-
+       int motorhomeID = tempCustomerBooking.getMotorhome_id();
+       Motorhome motorhome = motorhomeRepository.read(motorhomeID);
+       motorhome.setIs_Available(true); //true=tilgængelig
+       //gemme data til sqldatabase dvs opdatere den nye status for tilgængelighed
+       motorhomeRepository.update(motorhome);
        //Delete booking
-       bookingRepository.deleteBooking(bookingId);
+       bookingRepository.delete(tempCustomerBooking);
 
     }
 
 
 }
+//TJEK GENVEJ FOR REFACTOR

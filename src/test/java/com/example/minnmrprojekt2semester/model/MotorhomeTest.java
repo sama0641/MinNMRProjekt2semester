@@ -28,7 +28,7 @@ class MotorhomeTest {
 
 
         //Doesn't work!!
-        assertEquals(450,bookingRepository.readOneBooking(1).getKm_driven());
+        assertEquals(450,bookingRepository.read(1).getKm_driven());
 
 
 

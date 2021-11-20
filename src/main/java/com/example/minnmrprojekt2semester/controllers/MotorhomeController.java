@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
-import java.util.jar.Attributes;
 
 @Controller
 public class MotorhomeController {
@@ -35,14 +34,14 @@ public class MotorhomeController {
 //-------------------------------------------------------------------------------------------------------------------
     @GetMapping("/get_all_motorhomes")
     public String getAllMotorhomes (Model model) {
-        List<Motorhome> motorhomes = motorhomeRepository.readAllMotorhomes();
+        List<Motorhome> motorhomes = motorhomeRepository.readAll();
         Model motorhome_list = model.addAttribute("motorhome_list", motorhomes);
         return "Motorhome/all_motorhomes";
     }
 
     @GetMapping("/get_all_employees")
     public String getAllEmployees (Model model) {
-        List<Employee> employees = employeeRepository.readAllEmployees();
+        List<Employee> employees = employeeRepository.readAll();
         for (Employee employee:employees) { //TOM FORLOOP!!
         }
         model.addAttribute("employee_list", employees);
@@ -51,14 +50,14 @@ public class MotorhomeController {
 
     @GetMapping("/get_all_customers")
     public String getAllCustomer (Model model) {
-        List<Customer> customers = customerRepository.getAllCustomers();
+        List<Customer> customers = customerRepository.readAll();
         model.addAttribute("customer_list", customers);
         return "Customer/all_customers";
     }
 
     @GetMapping("/get_all_bookings")
     public String getAllBookings (Model model) {
-        List<Booking> bookings = bookingRepository.readAllBookings();
+        List<Booking> bookings = bookingRepository.readAll();
         for (Booking booking:bookings) { //TOM FORLOOP!!
         }
         model.addAttribute("booking_list", bookings);
@@ -77,7 +76,7 @@ public class MotorhomeController {
 
     @GetMapping("/customer/{id}")
     public String customerById (@PathVariable("id") int id, Model model) { //Pathvariable binder sig til den gældende input
-        Customer customer = customerRepository.readOneCustomer(id);
+        Customer customer = customerRepository.read(id);
         model.addAttribute("one_customer", customer);
         temporaryId = id;
         return "Customer/customer_by_id";
@@ -85,7 +84,7 @@ public class MotorhomeController {
 
     @GetMapping("/update_customer/{customer_id}")
     public String updateCustomer (Model model, @PathVariable("customer_id") int customerID) {
-        model.addAttribute("customer", customerRepository.readOneCustomer(customerID));
+        model.addAttribute("customer", customerRepository.read(customerID));
         return "Customer/update_customer";
     }
 
@@ -98,7 +97,9 @@ public class MotorhomeController {
         attributes.addAttribute("customer_name", name);
         attributes.addAttribute("customer_mail", mail);
         attributes.addAttribute("customer_phone_number", phone);
-        customerRepository.updateCustomer(new Customer(name, mail, phone), temporaryId);
+        Customer customer = new Customer(name, mail, phone);
+        customer.setId(temporaryId);
+        customerRepository.update(customer);
         return "redirect:/customer_updated/" + temporaryId;
     }
 
@@ -123,20 +124,21 @@ public class MotorhomeController {
 
     @PostMapping("/create_customer")
     public String createCustomer (@ModelAttribute Customer customer) {
-        customerRepository.createCustomer(customer);
+        customerRepository.create(customer);
         return "redirect:get_all_customers";
     }
 
     @GetMapping("/delete_customer/{id}")
     public String deleteCustomer (@PathVariable("id") int id) {
-        customerRepository.deleteCustomer(id);
+        Customer customer = customerRepository.read(id);
+        customerRepository.delete(customer);
         return  "redirect:../get_all_customers"; //går en sti tilbage således at delete bliver udskiftet med getall
     }
 
 //----------------------------------------------MOTORHOME---------------------------------------------
-    @GetMapping("/find_motorhome_by_id")
-    public String findMotorhomeById () {
-        return "find_motorhome_by_id";
+    @GetMapping("/find_motorhome_by_id/{id}")
+    public String findMotorhomeById (@PathVariable("id") int id, Model model) {
+        return "Motorhome/find_motorhome_by_id";
     }
 
     @PostMapping("/direct_motorhome_by_id")
@@ -146,7 +148,7 @@ public class MotorhomeController {
 
     @GetMapping("/motorhome/{id}")
     public String MotorhomeById (@PathVariable("id") int id, Model model) { //Pathvariable binder sig til den gældende input
-        Motorhome motorhome = motorhomeRepository.readOneMotorhome(id);
+        Motorhome motorhome = motorhomeRepository.read(id);
         model.addAttribute("one_motorhome", motorhome);
         temporaryId = id;
         return "Motorhome/motorhome_by_id";
@@ -174,8 +176,8 @@ public class MotorhomeController {
 
     @GetMapping("/update_motorhome/{motorhome_id}")
     public String updateMotorhome (Model model, @PathVariable("motorhome_id") int motorhomeID) {
-        model.addAttribute("motorhome", motorhomeRepository.readOneMotorhome(motorhomeID));
-        return "Motorhome/motorhome_customer";
+        model.addAttribute("motorhome", motorhomeRepository.read(motorhomeID));
+        return "Motorhome/update_motorhome";
     }
 
     @PostMapping("/direct_update_motorhome")
@@ -193,8 +195,10 @@ public class MotorhomeController {
         attributes.addAttribute("customer_name", size_category);
         attributes.addAttribute("customer_mail", brand_name);
         attributes.addAttribute("customer_phone_number", model_name);
-        motorhomeRepository.updateMotorhome(new Motorhome(is_available,price_per_day,season,size_category,
-                brand_name,model_name), temporaryId);
+        Motorhome motorhome = new Motorhome(is_available,price_per_day,season,size_category,
+        brand_name,model_name);
+        motorhome.setId(temporaryId);
+        motorhomeRepository.update(motorhome);
         return "redirect:/customer_updated/" + temporaryId;
     }
 
@@ -206,13 +210,15 @@ public class MotorhomeController {
 
     @PostMapping("/create_motorhome")
     public String createMotorhome (@ModelAttribute Motorhome motorhome) {
-        motorhomeRepository.createMotorhome(motorhome);
+        motorhomeRepository.create(motorhome);
         return "redirect:get_all_motorhome";
     }
 
     @GetMapping("/delete_motorhome/{id}")
     public String deleteMotorhome (@PathVariable("id") int id) {
-        motorhomeRepository.deleteMotorhome(id);
+
+        Motorhome motorhome = motorhomeRepository.read(id); //skaffer og tager imod id
+        motorhomeRepository.delete(motorhome);
         return  "redirect:../get_all_motorhomes"; //går en sti tilbage således at delete bliver udskiftet med getall
     }
 
@@ -229,7 +235,7 @@ public class MotorhomeController {
 
     @GetMapping("/employee/{id}")
     public String EmployeeById (@PathVariable("id") int id, Model model) { //Pathvariable binder sig til den gældende input
-        Employee employee = employeeRepository.readOneEmployee(id);
+        Employee employee = employeeRepository.read(id);
         model.addAttribute("one_employee", employee);
         temporaryId = id;
         return "Employee/employee_by_id";
@@ -237,7 +243,7 @@ public class MotorhomeController {
 
     @GetMapping("/update_employee/{employee_id}")
     public String updateEmployee (Model model, @PathVariable("employee_id") int employeeID) {
-        model.addAttribute("employee", employeeRepository.readOneEmployee(employeeID));
+        model.addAttribute("employee", employeeRepository.read(employeeID));
         return "Employee/update_employee";
 
     }
@@ -249,7 +255,7 @@ public class MotorhomeController {
 
         attributes.addAttribute("jobtitle", jobtitle);
         attributes.addAttribute("employee_name", employee_name);
-        employeeRepository.updateEmployee(new Employee(temporaryId, jobtitle, employee_name));
+        employeeRepository.update(new Employee(temporaryId, jobtitle, employee_name));
         return "redirect:/employee_updated/" + temporaryId;
     }
 
@@ -271,13 +277,14 @@ public class MotorhomeController {
 
     @PostMapping("/create_employee")
     public String createEmployee (@ModelAttribute Employee employee) {
-        employeeRepository.createEmployee(employee);
+        employeeRepository.create(employee);
         return "redirect:get_all_motorhome";
     }
 
     @GetMapping("/delete_employee/{id}")
     public String deleteEmployee (@PathVariable("id") int id) {
-        employeeRepository.deleteEmployee(id);
+        Employee employee = employeeRepository.read(id); //skaffer og tager imod id
+        employeeRepository.delete(employee);           //sletter
         return  "redirect:../get_all_employees"; //går en sti tilbage således at delete bliver udskiftet med getall
     }
 

@@ -27,7 +27,7 @@
       <td th:text="${employee.jobtitle}"/>
       <td th:text="${employee.employee_name}"/>
       <td>
-        <a th:href="@{'/viewEmployee/'+${employee.id}}">
+        <a th:href="@{'/find_motorhome_by_id/'+${employee.id}}">
           <button class="normalButton">
             Information
           </button>
@@ -41,7 +41,7 @@
         </a>
       </td>
       <td>
-        <a th:href="@{'/deleteEmployee/'+${employee.id}}">
+        <a th:href="@{'/delete_employee/'+${employee.id}}">
           <button class="deleteButton">
             Delete
           </button>

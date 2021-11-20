@@ -7,12 +7,11 @@
 <body>
 <form action="/direct_update_motorhome" method="post">
 
-    <label for="motorhome_name">Name</label>
-    <input type="text" name="motorhome_name" id="motorhome_name" th:value="${motorhome.motorhome_name}">
+
     <label for="is_available">Is available</label>
-    <input type="text" name="is_available" id="is_available" th:value="${motorhome.is_available}">
+    <input type="text" name="is_available" id="is_available" th:value="${motorhome.is_Available}">
     <label for="price_per_day">Price per day</label>
-    <input type="text" name="price_per_day" id="price_per_day" th:value="${motorhome.price_per_day}">
+    <input type="text" name="price_per_day" id="price_per_day" th:value="${motorhome.pricePerDay}">
     <label for="season">Season</label>
     <input type="text" name="season" id="season" th:value="${motorhome.season}">
     <label for="size_category">Size</label>
@@ -21,8 +20,6 @@
     <input type="text" name="brand_name" id="brand_name" th:value="${motorhome.brand_name}">
     <label for="model_name">Model</label>
     <input type="text" name="model_name" id="model_name" th:value="${motorhome.model_name}">
-
-
     <label for="id"></label>
     <input type="number" name="id" th:value="${motorhome.id}" id="id" hidden>
 

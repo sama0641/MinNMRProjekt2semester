@@ -10,7 +10,7 @@ import java.util.Date;
 public class PriceCalculator {
 
 
-    public static void calculateCancellationPrice (Booking booking) {
+    public void calculateCancellationPrice (Booking booking) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
