@@ -1,0 +1,24 @@
+
+
+3)  create motorhome
+4)  create employee
+5)  @GetMapping("/update_motorhome/{motohome_id}")
+6)  @PostMapping("/direct_update_motorhome")
+7)  @GetMapping("/motorhome_updated/{id}") (se linje 90 i controlleren)
+9)  @GetMapping("/update_employee/{employee_id}")
+10) @PostMapping("/direct_update_employee")
+11) @GetMapping("/employee_updated/{id}") (se linje 90 i controlleren)
+
+husk at oprette submit buttons
+
+prøv at lav en enkel booking og kør programmet.
+
+SWOT analyse skal indeholde konklusion iht selve koden, 
+hvor vil man kunne gøre en essentiel forskel I KODEN
+for at kunne flytte rundt på kasserne
+
+HUSK feasibility study skal indeholde economy cost 
+ud fra reelle tal. Ring til Prosa.
+Solution inde i en solution (GDPR og IT-sikkerhed)
+
+HUSK AT SKRIV HVORFOR PROGRAMMET ER PÅ ENGELSK OG IKKE DANSK NÅR DET KUN ER CAMPING I DK
