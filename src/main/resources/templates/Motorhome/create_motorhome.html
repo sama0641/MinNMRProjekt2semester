@@ -2,9 +2,18 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/index.css">
     <title>Create Motorhome</title>
 </head>
 <body>
+<nav>
+    <a href="/get_all_motorhomes">Motorhomes</a>
+    <a href="/get_all_employees">Employees</a>
+    <a href="/get_all_customers">Customers</a>
+    <a href="/get_all_bookings">Bookings</a>
+
+    <a href="../static/Brugervejledning.pdf">Hent brugervejledning</a>
+</nav>
 
 <div class="form-container">
     <form action="/create_motorhome" method="post">
@@ -22,7 +31,7 @@
         <label for="model_name">Model</label>
         <input type="text" name="model_name" id="model_name">
 
-        <button type="submit">Create</button>
+        <button class="button" type="submit">Create</button>
     </form>
 </div>
 

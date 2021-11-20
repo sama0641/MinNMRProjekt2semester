@@ -141,6 +141,7 @@ public class MotorhomeController {
         return "Motorhome/find_motorhome_by_id";
     }
 
+
     @PostMapping("/direct_motorhome_by_id")
     public String directMotorhomeByiD (@RequestParam(name = "motorhome_ID")int id) { //anmode om input fra bruger/browser den gældende parameter (id)
         return "redirect:/motorhome/" + id;

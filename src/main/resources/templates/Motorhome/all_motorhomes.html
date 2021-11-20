@@ -2,10 +2,19 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/index.css">
     <title>All motorhomes</title>
+
 </head>
 <body>
+<nav>
+    <a href="/get_all_motorhomes">Motorhomes</a>
+    <a href="/get_all_employees">Employees</a>
+    <a href="/get_all_customers">Customers</a>
+    <a href="/get_all_bookings">Bookings</a>
 
+    <a href="../static/Brugervejledning.pdf">Hent brugervejledning</a>
+</nav>
 
 <div>
     <table class="tableMenu">
@@ -35,29 +44,28 @@
             <td th:text="${motorhome.brand_name}"/>
             <td th:text="${motorhome.model_name}"/>
             <td>
-                <a th:href="@{'/find_motorhome_by_id/'+${motorhome.id}}">
-                    <button>
-                        Information
-                    </button>
+                <a class="information button" th:href="@{'/find_motorhome_by_id/'+${motorhome.id}}">
+                   Information
                 </a>
             </td>
             <td>
-                <a th:href="@{'/update_motorhome/'+${motorhome.id}}">
-                    <button>
-                        Update
-                    </button>
+                <a class="update button" th:href="@{'/update_motorhome/'+${motorhome.id}}">
+                    Update
                 </a>
             </td>
             <td>
-                <a th:href="@{'/delete_motorhome/'+${motorhome.id}}">
-                    <button>
-                        Delete
-                    </button>
+                <a class="delete button" th:href="@{'/delete_motorhome/'+${motorhome.id}}">
+                   Delete
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
+
+    <a class="floating-action" th:href="@{'/create_motorhome/'}">
+        +
+
+    </a>
 
     </div>
 </body>
